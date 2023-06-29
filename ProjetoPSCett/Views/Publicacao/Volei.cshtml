@@ -1,0 +1,49 @@
+﻿@model ProjetoPSCett.Models.PublicacaoViewModel;
+
+@{
+    ViewData["Title"] = "Volei";
+}
+
+<div class="mt-5 pt-5">
+    <h1 class="pt-5" style="display: inline">
+        Publicações de vôlei
+    </h1>
+    <hr />
+
+    @foreach (var publicacao in Model.Publicacoes)
+    {
+        @if (publicacao.Esporte == EnumeradorEsporte.Volei)
+        {
+            <div class="cotainer-fluid border p-2 border-2 mt-2 pt-2">
+                <p class="float-end">@Html.DisplayFor(modelItem => publicacao.Esporte)</p>
+                <h2>
+                    @Html.DisplayFor(modelItem => publicacao.Titulo)
+                </h2>
+                <h5>
+                    Por - @Html.DisplayFor(modelItem => publicacao.Autor) em @Html.DisplayFor(modelItem => publicacao.DataPublicacao)
+                </h5>
+                <p>
+                    @Html.DisplayFor(modelItem => publicacao.Conteudo)
+                </p>
+                <div id="comentarios" class="d-none">
+                    @foreach (var comentario in publicacao.Comentários)
+                    {
+                        <div class="cotainer-fluid border p-2 border-2 mt-2 pt-2">
+                            <p>
+                                @comentario
+                            </p>
+                        </div>
+                    }
+                    <form asp-controller="Publicacao" asp-action="AdicionarComentario" method="get" class="input-group p-2 border-2 mt-2 pt-2">
+                        <input class="form-control" type="text" placeholder="Insira um comentário" asp-for="Comentario" />
+                        <input type="submit" value="Comentar" class=" btn btn-success" />
+                    </form>
+                </div>
+                <a class="btn btn-sm btn-outline-secondary" onclick="abreComentarios()">&#9999 Comentarios (@publicacao.Comentários.Count)</a>
+                <a class="btn btn-sm btn-outline-info" asp-action="Editar" asp-route-id="@publicacao.Id">&#9999 Editar</a>
+                <a class="btn btn-sm btn-outline-danger" asp-action="Remover" asp-route-id="@publicacao.Id">&#x1F5D1 Remover</a>
+            </div>
+        }
+    }
+
+</div>
