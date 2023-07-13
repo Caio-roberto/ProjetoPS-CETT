@@ -6,7 +6,7 @@ namespace ProjetoPSCett.Models;
 
 public class RepositorioPublicacao : RepositorioAbstrato<Publicacao>
 {
-    public string caminhoConexao = @"DataSource=localhost; Port=3050; Database=C:\Users\caior\Documents\Caio\Projeto PS\PROJETOCETT.FDB; username= SYSDBA; password = caiord22";
+    public string caminhoConexao = @"DataSource=localhost; Port=3050; Database=C:\Users\caior\Documents\Caio\Projeto PS\PROJETOCETT.FDB; username= SYSDBA; password = masterkey";
     public FbConnection? conn;
 
     public override void Add(Publicacao publicacao)
